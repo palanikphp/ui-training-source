@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import CartContext from "../context/CartContext";
 
 function NavBar(props) {
   const [cartCount] = useContext(CartContext);
+  const reduxCartState = useSelector((state) => state.cart.count);
+  console.log(reduxCartState);
 
   return (
     <nav className="bg-black border-gray-200 px-2 sm:px-4 py-2.5 rounded relative dark:bg-gray-800 h-24">
@@ -54,9 +57,16 @@ function NavBar(props) {
       </div>
 
       <button className="h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800 absolute right-0 top-0 ">
-        <span className="mr-2">Button</span>
+        <span className="mr-2">Context</span>
         <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
           {cartCount}
+        </span>
+      </button>
+
+      <button className="h-10 px-5 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800 absolute top-0 right-36 ">
+        <span className="mr-2">Redux</span>
+        <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+          {reduxCartState}
         </span>
       </button>
     </nav>
